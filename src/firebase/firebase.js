@@ -72,7 +72,7 @@ class Firebase {
     };
 
     getProductsInstance = () => {
-        return this.db.collection("products").doc("1").get()
+        return this.db.collection("shared").doc("products").get()
     };
 
     uploadPostImage = (file) => {
