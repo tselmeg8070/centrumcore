@@ -75,6 +75,10 @@ class Firebase {
         return this.db.collection("shared").doc("products").get()
     };
 
+    getProduct = (id) => {
+        return this.db.collection("products").doc(id).get();
+    };
+
     uploadPostImage = (file) => {
         console.log("Function is starting");
         return new Promise((resolve, reject) => {
