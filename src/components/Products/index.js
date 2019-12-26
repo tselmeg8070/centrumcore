@@ -9,7 +9,9 @@ class Products extends React.Component {
         this.state = {
             products: [],
             category: "Бүгд",
-            query: ""
+            query: "",
+            start: 0,
+            end: 12
         }
     }
 
@@ -18,12 +20,33 @@ class Products extends React.Component {
     }
 
     handleChange = (e) => {
-        this.setState({query: e.target.value})
+        this.setState({query: e.target.value});
+        this.setState({
+            start: 0,
+            end: 12,
+        })
+    };
+
+    handleClickNext = () => {
+        this.setState({
+            start: this.state.start+12,
+            end: this.state.end+12,
+        })
+    };
+
+    handleClickPrevious = () => {
+        if(this.state.start - 12 >= 0)
+            this.setState({
+                start: this.state.start-12,
+                end: this.state.end-12,
+            })
     };
 
     render() {
+        let i = -1;
         return (
             <section className="section-margin--small mb-5 pt-0 mt-4">
+                {console.log(i)}
                 {console.log(this.state)}
                 <div className="container">
                     <div className="row">
@@ -79,20 +102,28 @@ class Products extends React.Component {
                                     {this.state.products.map(product => {
                                             if (this.state.category === 'Бүгд') {
                                                 if (this.state.query === "") {
+                                                    i++;
+                                                    if(i >= this.state.start && i < this.state.end)
                                                     return <Product key={product.id} name={product.name}
                                                                     category={product.category} price={product.price}
                                                                     id={product.id} image={product.image}/>
                                                 } else if (product.name.toLowerCase().includes(this.state.query.toLowerCase())) {
+                                                    i++;
+                                                    if(i >= this.state.start && i < this.state.end)
                                                     return <Product key={product.id} name={product.name}
                                                                     category={product.category} price={product.price}
                                                                     id={product.id} image={product.image}/>
                                                 }
                                             } else if (product.category === this.state.category) {
                                                 if (this.state.query === "") {
+                                                    i++;
+                                                    if(i >= this.state.start && i < this.state.end)
                                                     return <Product key={product.id} name={product.name}
                                                                     category={product.category} price={product.price}
                                                                     id={product.id} image={product.image}/>
                                                 } else if (product.name.toLowerCase().includes(this.state.query.toLowerCase())) {
+                                                    i++;
+                                                    if(i >= this.state.start && i < this.state.end)
                                                     return <Product key={product.id} name={product.name}
                                                                     category={product.category} price={product.price}
                                                                     id={product.id} image={product.image}/>
@@ -101,6 +132,14 @@ class Products extends React.Component {
 
                                         }
                                     )}
+                                </div>
+                                <div className={"row"}>
+                                    <div className={"col-md-6"}>
+                                        <button className={"btn btn-secondary"} onClick={this.handleClickPrevious}>Өмнөх</button>
+                                    </div>
+                                    <div className={"col-md-6 text-right"}>
+                                        <button className={"btn btn-primary"} onClick={this.handleClickNext} disabled={i < 11}>Дараах</button>
+                                    </div>
                                 </div>
                             </section>
                         </div>

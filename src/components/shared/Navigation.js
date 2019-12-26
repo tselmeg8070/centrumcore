@@ -21,7 +21,7 @@ class Navigation extends React.Component {
                                 <ul className="nav navbar-nav menu_nav ml-auto ">
                                     <li className="nav-item"><Link className="nav-link" to={ROUTES.LANDING}>Нүүр</Link>
                                     </li>
-                                    <li className="nav-item"><Link className="nav-link" to={ROUTES.PRODUCTS}>Бараанууд</Link>
+                                    <li className="nav-item"><Link className="nav-link" to={ROUTES.PRODUCTS}>Бүтээгдэхүүнүүд</Link>
                                     </li>
                                     <li className="nav-item"><Link className="nav-link" to={ROUTES.LANDING}>Камер</Link>
                                     </li>
@@ -33,8 +33,7 @@ class Navigation extends React.Component {
                                         <button><i className="ti-shopping-cart"></i><span
                                             className="nav-shop__circle">{this.props.count}</span></button></Link>
                                     </li>
-                                    {/*<li className="nav-item"><Link className="button button-header" to="#">Buy Now</Link>*/}
-                                    {/*</li>*/}
+
                                 </ul>
                             </div>
                         </div>
