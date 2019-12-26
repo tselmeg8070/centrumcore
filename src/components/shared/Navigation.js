@@ -29,8 +29,9 @@ class Navigation extends React.Component {
 
                                 <ul className="nav-shop">
                                     <li className="nav-item">
+                                        <Link to={ROUTES.CART}>
                                         <button><i className="ti-shopping-cart"></i><span
-                                            className="nav-shop__circle">{this.props.count}</span></button>
+                                            className="nav-shop__circle">{this.props.count}</span></button></Link>
                                     </li>
                                     {/*<li className="nav-item"><Link className="button button-header" to="#">Buy Now</Link>*/}
                                     {/*</li>*/}

@@ -1,6 +1,9 @@
 import React from 'react';
 import {withFirebase} from "../../firebase";
 import {numberWithCommas} from "../../utils/HelperFunctions";
+import {compose} from "recompose";
+import {connect} from "react-redux";
+import {cartAddProduct} from "../../redux/actions/cart";
 
 class Product extends React.Component {
     constructor(props) {
@@ -28,8 +31,19 @@ class Product extends React.Component {
     };
 
     handleSubmit = () => {
-        this.props.incrementCount();
-        window.addedToCart();
+        if(this.state.quantity > 0) {
+            this.props.addProductToCart(
+                {
+                    id: this.props.match.params.id,
+                    name: this.state.product.name,
+                    image: this.state.product.image,
+                    price: this.state.product.price,
+                    quantity: parseInt(this.state.quantity)
+                }
+            );
+            this.props.incrementCount();
+            window.addedToCart();
+        }
     };
 
     render() {
@@ -65,4 +79,10 @@ class Product extends React.Component {
     }
 }
 
-export default withFirebase(Product);
+const mapDispatchToProps = (dispatch) => ({
+  addProductToCart: (product) => dispatch(cartAddProduct(product))
+});
+export default compose(
+    withFirebase,
+    connect(null, mapDispatchToProps)
+)(Product);
